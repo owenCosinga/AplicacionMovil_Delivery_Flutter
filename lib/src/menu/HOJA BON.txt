@@ -1,0 +1,16 @@
+HOJA BON
+
+body: Column(
+        children: [
+          //este codigo es para que deje un espacio entre widgts es un tipo </br>
+          SizedBox(height: 20),
+          Text('este es el texto numero 1'),
+          Container(
+            margin: EdgeInsets.only(left: 30, right: 30, top: 30),
+            child: TextField(
+              decoration: InputDecoration(hintText: 'Descripcion'),
+            ),
+          ),
+          ElevatedButton(onPressed: () {}, child: Text('continuar'))
+        ],
+      ),
