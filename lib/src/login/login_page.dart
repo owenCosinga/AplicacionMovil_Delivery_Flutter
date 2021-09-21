@@ -1,9 +1,11 @@
+import 'package:app_delivery_en_flutter/src/login/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:app_delivery_en_flutter/src/utils/my_colors.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -12,6 +14,17 @@ class LoginPage extends StatefulWidget {
 //UN WIDGET ES UN ELEMENTO QUE SE MOSTRARA EN LA PANTALLA
 
 class _LoginPageState extends State<LoginPage> {
+  LoginController _con = new LoginController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
+      _con.init(context);
+    });
+  }
+
   @override
   //el metodo build es el que corre el codigo que se va mostrar en la pantalla
   //tambien es donde se van a colocar los textos botones, campos de texto, etc.
@@ -31,14 +44,16 @@ class _LoginPageState extends State<LoginPage> {
                   top: 60,
                   left: 25,
                 ),
-                Column(
-                  children: [
-                    _lottieAnimation(),
-                    _textFieldEmail(),
-                    _textFieldPassword(),
-                    _buttonLogin(),
-                    _textDontHaveAccount()
-                  ],
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _lottieAnimation(),
+                      _textFieldEmail(),
+                      _textFieldPassword(),
+                      _buttonLogin(),
+                      _textDontHaveAccount()
+                    ],
+                  ),
                 ),
               ],
             )));
@@ -83,6 +98,8 @@ class _LoginPageState extends State<LoginPage> {
           color: MyColors.primaryOpacityColor,
           borderRadius: BorderRadius.circular(30)),
       child: TextField(
+        controller: _con.emailController,
+        keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
             hintText: 'Correo Electronico',
             border: InputBorder.none,
@@ -103,6 +120,8 @@ class _LoginPageState extends State<LoginPage> {
           color: MyColors.primaryOpacityColor,
           borderRadius: BorderRadius.circular(30)),
       child: TextField(
+        controller: _con.passwordController,
+        obscureText: true,
         decoration: InputDecoration(
             hintText: 'Contraseña',
             border: InputBorder.none,
@@ -121,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: _con.login,
         child: Text('ingresar'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
@@ -141,10 +160,13 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(color: MyColors.primaryColor),
         ),
         SizedBox(width: 7),
-        Text(
-          'Registrate',
-          style: TextStyle(
-              fontWeight: FontWeight.bold, color: MyColors.primaryColor),
+        GestureDetector(
+          onTap: _con.goToRegisterPage,
+          child: Text(
+            'Registrate',
+            style: TextStyle(
+                fontWeight: FontWeight.bold, color: MyColors.primaryColor),
+          ),
         ),
       ],
     );
