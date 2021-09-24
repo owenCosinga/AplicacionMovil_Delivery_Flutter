@@ -15,9 +15,9 @@ class RegisterController {
 
   UsersProvider usersProvider = new UsersProvider();
 
-  Future init(BuildContext context) {
+  Future init(BuildContext context) async {
     this.context = context;
-    usersProvider.init(context);
+    await usersProvider.init(context);
   }
 
   void register() async {
@@ -60,12 +60,16 @@ class RegisterController {
 
     MySnackbar.show(context, responseApi.message);
 
+    if (responseApi.success) {
+      Future.delayed(Duration(seconds: 3), () {
+        Navigator.pushReplacementNamed(context, 'login');
+      });
+    }
+
     print('RESPUESTA: ${responseApi.toJson()}');
-    print(email);
-    print(name);
-    print(lastname);
-    print(phone);
-    print(password);
-    print(confirmPassword);
+  }
+
+  void back() {
+    Navigator.pop(context);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:app_delivery_en_flutter/src/pages/login/login_page.dart';
 import 'package:app_delivery_en_flutter/src/pages/register/register_page.dart';
 import 'package:app_delivery_en_flutter/src/utils/my_colors.dart';
+import 'package:app_delivery_en_flutter/src/pages/client/products/list/client_products_list_page.dart';
 import 'package:flutter/material.dart';
 
 //metodo principal
@@ -25,7 +26,9 @@ class _MyAppState extends State<MyApp> {
       initialRoute: 'login',
       routes: {
         'login': (BuildContext context) => LoginPage(),
-        'register': (BuildContext context) => RegisterPage()
+        'register': (BuildContext context) => RegisterPage(),
+        'client/products/list': (BuildContext context) =>
+            ClientProductsListPage()
       },
 
       //para escoger diferentes colores usa este link https://htmlcolorcodes.com/es/
