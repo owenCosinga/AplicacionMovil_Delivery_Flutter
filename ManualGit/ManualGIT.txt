@@ -82,7 +82,7 @@ tambien ya esten puestos en nuestro proyecto local usamos el comando en la conso
  
 *cuando pensamos que nuestro proyecto esta terminado o que la version esta funcionando y disponible
 para proximas versiones o cambios. es igual que los videojuegos ambos tienen versiones y
-eso son mejoras a lo largo del tiempo
+egso son mejoras a lo largo del tiempo
 se usa el siguiente comando
 
 ////// git tag (nombre de la version) -m ("descripcion de la version")

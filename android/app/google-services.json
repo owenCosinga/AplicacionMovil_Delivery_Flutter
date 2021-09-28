@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "285120430097",
+    "project_id": "delivery-app-udemy-689aa",
+    "storage_bucket": "delivery-app-udemy-689aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285120430097:android:35a63d292628348557f1b0",
+        "android_client_info": {
+          "package_name": "com.licoreriawendy.app_delivery_en_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285120430097-7s6pqgp6gtlmernfjh6a4r9jdh0u3css.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.licoreriawendy.app_delivery_en_flutter",
+            "certificate_hash": "9b098401761d14b34fd55d6ea7e38a2b9dd1e18c"
+          }
+        },
+        {
+          "client_id": "285120430097-r92v7gpvbjgo19d0on1rt4dis1dnpqnt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTl3lhNaT81sHE_V6yJGvZ0FKkWecn0yc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285120430097-r92v7gpvbjgo19d0on1rt4dis1dnpqnt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
