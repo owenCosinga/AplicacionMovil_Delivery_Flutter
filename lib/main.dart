@@ -1,3 +1,4 @@
+import 'package:app_delivery_en_flutter/src/pages/client/update/client_update_page.dart';
 import 'package:app_delivery_en_flutter/src/pages/login/login_page.dart';
 import 'package:app_delivery_en_flutter/src/pages/register/register_page.dart';
 import 'package:app_delivery_en_flutter/src/pages/roles/roles_page.dart';
@@ -33,6 +34,7 @@ class _MyAppState extends State<MyApp> {
         'roles': (BuildContext context) => RolesPage(),
         'client/products/list': (BuildContext context) =>
             ClientProductsListPage(),
+        'client/update': (BuildContext context) => ClientUpdatePage(),
         'restaurant/orders/list': (BuildContext context) =>
             RestaurantOrdersListPage(),
         'delivery/orders/list': (BuildContext context) =>
