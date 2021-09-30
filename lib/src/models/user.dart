@@ -18,24 +18,24 @@ class User {
 
   User(
       {this.id,
+      this.email,
       this.name,
       this.lastname,
-      this.email,
       this.phone,
+      this.image,
       this.password,
       this.sessionToken,
-      this.image,
       this.roles});
 
   factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"] is int ? json['id'].toString() : json["id"],
+        email: json["email"],
         name: json["name"],
         lastname: json["lastname"],
-        email: json["email"],
         phone: json["phone"],
+        image: json["image"],
         password: json["password"],
         sessionToken: json["session_token"],
-        image: json["image"],
         roles: json["roles"] == null
             ? []
             : List<Rol>.from(
@@ -45,13 +45,13 @@ class User {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "email": email,
         "name": name,
         "lastname": lastname,
-        "email": email,
         "phone": phone,
+        "image": image,
         "password": password,
         "session_token": sessionToken,
-        "image": image,
         "roles": roles,
       };
 }
