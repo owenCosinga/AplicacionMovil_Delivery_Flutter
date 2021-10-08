@@ -1,8 +1,8 @@
-import 'package:app_delivery_en_flutter/src/pages/client/update/client_update_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:app_delivery_en_flutter/src/utils/my_colors.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:lottie/lottie.dart';
+import 'package:app_delivery_en_flutter/src/pages/client/update/client_update_controller.dart';
+import 'package:app_delivery_en_flutter/src/pages/register/register_controller.dart';
+import 'package:app_delivery_en_flutter/src/utils/my_colors.dart';
 
 class ClientUpdatePage extends StatefulWidget {
   const ClientUpdatePage({Key key}) : super(key: key);
@@ -11,13 +11,12 @@ class ClientUpdatePage extends StatefulWidget {
   _ClientUpdatePageState createState() => _ClientUpdatePageState();
 }
 
-//UN WIDGET ES UN ELEMENTO QUE SE MOSTRARA EN LA PANTALLA
-
 class _ClientUpdatePageState extends State<ClientUpdatePage> {
   ClientUpdateController _con = new ClientUpdateController();
 
   @override
   void initState() {
+    // TODO: implement initState
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
@@ -26,45 +25,28 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
   }
 
   @override
-  //el metodo build es el que corre el codigo que se va mostrar en la pantalla
-  //tambien es donde se van a colocar los textos botones, campos de texto, etc.
   Widget build(BuildContext context) {
-    //sera siempre sera la primera que retorne y tambien crea toda la estructura de la pantalla
     return Scaffold(
       appBar: AppBar(
-        title: Text('Editar Perfil'),
+        title: Text('Editar perfil'),
       ),
-      //Appbar es un widget de barra que esta situado en la parte arriba
-
-      //Column es un widget que hace que otros widget se pongan uno de bajo del otro
       body: Container(
-        width: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 50,
-              ),
-              _imageUser(),
-              _textFieldName(),
-              _textFieldlastname(),
-              _textFieldphone(),
-            ],
-          ),
-        ),
-      ),
+          width: double.infinity,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(height: 50),
+                _imageUser(),
+                SizedBox(height: 30),
+                _textFieldName(),
+                _textFieldLastName(),
+                _textFieldPhone(),
+              ],
+            ),
+          )),
       bottomNavigationBar: _buttonLogin(),
     );
   }
-
-  /*Widget _lottieAnimation() {
-    return Container(
-      margin: EdgeInsets.only(
-          top: 100, bottom: MediaQuery.of(context).size.height * 0.17),
-      child: Lottie.asset('assets/json/buy.json',
-          width: 350, height: 200, fit: BoxFit.fill),
-    );
-  }*/
 
   Widget _imageUser() {
     return GestureDetector(
@@ -95,14 +77,14 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
             contentPadding: EdgeInsets.all(15),
             hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
-              Icons.email,
+              Icons.person,
               color: MyColors.primaryColor,
             )),
       ),
     );
   }
 
-  Widget _textFieldlastname() {
+  Widget _textFieldLastName() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
@@ -116,14 +98,14 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
             contentPadding: EdgeInsets.all(15),
             hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
-              Icons.email,
+              Icons.person_outline,
               color: MyColors.primaryColor,
             )),
       ),
     );
   }
 
-  Widget _textFieldphone() {
+  Widget _textFieldPhone() {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
       decoration: BoxDecoration(
@@ -138,7 +120,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
             contentPadding: EdgeInsets.all(15),
             hintStyle: TextStyle(color: MyColors.primaryColorDark),
             prefixIcon: Icon(
-              Icons.email,
+              Icons.phone,
               color: MyColors.primaryColor,
             )),
       ),
@@ -150,7 +132,7 @@ class _ClientUpdatePageState extends State<ClientUpdatePage> {
       width: double.infinity,
       margin: EdgeInsets.symmetric(horizontal: 50, vertical: 30),
       child: ElevatedButton(
-        onPressed: _con.isEnable ? _con.register : null,
+        onPressed: _con.isEnable ? _con.update : null,
         child: Text('ACTUALIZAR PERFIL'),
         style: ElevatedButton.styleFrom(
             primary: MyColors.primaryColor,
