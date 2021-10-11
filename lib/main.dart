@@ -1,6 +1,8 @@
 import 'package:app_delivery_en_flutter/src/pages/client/update/client_update_page.dart';
 import 'package:app_delivery_en_flutter/src/pages/login/login_page.dart';
 import 'package:app_delivery_en_flutter/src/pages/register/register_page.dart';
+import 'package:app_delivery_en_flutter/src/pages/restaurant/categories/create/restaurant_categories_create_page.dart';
+import 'package:app_delivery_en_flutter/src/pages/restaurant/products/create/restaurant_products_create_page.dart';
 import 'package:app_delivery_en_flutter/src/pages/roles/roles_page.dart';
 import 'package:app_delivery_en_flutter/src/utils/my_colors.dart';
 import 'package:app_delivery_en_flutter/src/pages/client/products/list/client_products_list_page.dart';
@@ -37,6 +39,10 @@ class _MyAppState extends State<MyApp> {
         'client/update': (BuildContext context) => ClientUpdatePage(),
         'restaurant/orders/list': (BuildContext context) =>
             RestaurantOrdersListPage(),
+        'restaurant/categories/create': (BuildContext context) =>
+            RestaurantCategoriesCreatePage(),
+        'restaurant/products/create': (BuildContext context) =>
+            RestaurantProductsCreatePage(),
         'delivery/orders/list': (BuildContext context) =>
             DeliveryOrdersListPage()
       },
