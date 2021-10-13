@@ -1,6 +1,8 @@
 import 'package:app_delivery_en_flutter/src/models/category.dart';
+import 'package:app_delivery_en_flutter/src/models/product.dart';
 import 'package:app_delivery_en_flutter/src/pages/client/products/list/client_products_list_controller.dart';
 import 'package:app_delivery_en_flutter/src/utils/my_colors.dart';
+import 'package:app_delivery_en_flutter/src/widgets/no_data_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -60,20 +62,35 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
         drawer: _drawer(),
         body: TabBarView(
           children: _con.categories.map((Category category) {
-            return GridView.count(
-              crossAxisCount: 2,
-              childAspectRatio: 0.7,
-              children: List.generate(10, (index) {
-                return _cardProduct();
-              }),
-            );
+            return FutureBuilder(
+                future: _con.getProducts(category.id),
+                builder: (context, AsyncSnapshot<List<Product>> snapshot) {
+                  if (snapshot.hasData) {
+                    if (snapshot.data.length > 0) {
+                      return GridView.builder(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 20),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, childAspectRatio: 0.7),
+                          itemCount: snapshot.data?.length ?? 0,
+                          itemBuilder: (_, index) {
+                            return _cardProduct(snapshot.data[index]);
+                          });
+                    } else {
+                      return NoDataWidget(text: 'No hay productos');
+                    }
+                  } else {
+                    return NoDataWidget(text: 'No hay productos');
+                  }
+                });
           }).toList(),
         ),
       ),
     );
   }
 
-  Widget _cardProduct() {
+  Widget _cardProduct(Product product) {
     return Container(
       height: 250,
       child: Card(
@@ -107,7 +124,9 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                   width: MediaQuery.of(context).size.width * 0.45,
                   padding: EdgeInsets.all(20),
                   child: FadeInImage(
-                    image: AssetImage('assets/img/pizza2.png'),
+                    image: product.image1 != null
+                        ? NetworkImage(product.image1)
+                        : AssetImage('assets/img/pizza2.png'),
                     fit: BoxFit.contain,
                     fadeInDuration: Duration(milliseconds: 50),
                     placeholder: AssetImage('assets/img/no-image.png'),
@@ -117,7 +136,7 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                   margin: EdgeInsets.symmetric(horizontal: 20),
                   height: 33,
                   child: Text(
-                    'Nombre del producto',
+                    product.name ?? '',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
@@ -128,9 +147,9 @@ class _ClientProductsListPageState extends State<ClientProductsListPage> {
                 ),
                 Spacer(),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                  margin: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   child: Text(
-                    '\S/0.0',
+                    '\S/${product.price ?? 0}',
                     style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
