@@ -48,7 +48,9 @@ class _MyAppState extends State<MyApp> {
       },
 
       //para escoger diferentes colores usa este link https://htmlcolorcodes.com/es/
-      theme: ThemeData(primaryColor: MyColors.primaryColor),
+      theme: ThemeData(
+          primaryColor: MyColors.primaryColor,
+          appBarTheme: AppBarTheme(elevation: 0)),
     );
   }
 }
